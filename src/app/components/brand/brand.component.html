@@ -1,0 +1,25 @@
+<h3>Markalar</h3>
+@if(dataLoaded){
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Marka</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for(brand of brands;track brand.id) {
+      <tr>
+        <td>{{ brand.id }}</td>
+        <td>{{ brand.name }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>
+}@else {
+<div class="spinner-border" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+}
