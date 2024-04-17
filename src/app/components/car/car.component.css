@@ -1,0 +1,15 @@
+.col {
+    cursor: pointer;
+}
+
+.col img {
+    transition: transform 0.5s ease;
+}
+
+.col:hover img {
+    transform: scale(1.25);
+}
+
+.col .card {
+    overflow: hidden;
+}

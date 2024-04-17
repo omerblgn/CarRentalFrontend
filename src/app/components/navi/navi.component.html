@@ -1,6 +1,23 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-md bg-body-tertiary p-md-4">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Rent A Car</a>
+    <a routerLink="/" class="navbar-brand d-flex align-items-center">
+      <img
+        src="../../../assets/logo.png"
+        alt="Logo"
+        height="40"
+        id="logo"
+        class="d-inline-block align-text-top object-fit-contain"
+        style="mix-blend-mode: multiply"
+      />
+      <img
+        src="../../../assets/title.png"
+        alt="Logo"
+        height="30"
+        id="logoTitle"
+        class="d-inline-block align-text-top object-fit-contain"
+        style="mix-blend-mode: multiply"
+      />
+    </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -15,23 +32,34 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a
+            routerLink="/"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            ariaCurrentWhenActive="page"
+            class="nav-link"
+            >Ana Sayfa</a
+          >
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" aria-disabled="true">Disabled</a>
+          <a
+            routerLink="/cars"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            ariaCurrentWhenActive="page"
+            class="nav-link"
+            >Arabalar</a
+          >
         </li>
       </ul>
       <form class="d-flex" role="search">
         <input
           class="form-control me-2"
           type="search"
-          placeholder="Search"
-          aria-label="Search"
+          placeholder="Ara"
+          aria-label="Ara"
         />
-        <button class="btn btn-outline-success" type="submit">Search</button>
+        <button class="btn btn-outline-primary" type="submit">Ara</button>
       </form>
     </div>
   </div>

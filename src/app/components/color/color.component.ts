@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ColorService } from '../../services/color.service';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Color } from '../../models/color';
+import { ColorService } from '../../services/color.service';
 
 @Component({
   selector: 'app-color',
   standalone: true,
-  imports: [],
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './color.component.html',
   styleUrl: './color.component.css',
 })

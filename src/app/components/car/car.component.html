@@ -1,35 +1,74 @@
-<h3>Arabalar</h3>
-@if(dataLoaded){
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Marka</th>
-        <th>Model</th>
-        <th>Renk</th>
-        <th>Model Yılı</th>
-        <th>Günlük Fiyatı</th>
-        <th>Açıklama</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for(car of cars;track car.id){
-      <tr>
-        <td>{{ car.id }}</td>
-        <td>{{ car.brandName }}</td>
-        <td>{{ car.carName }}</td>
-        <td>{{ car.colorName }}</td>
-        <td>{{ car.modelYear }}</td>
-        <td>{{ car.dailyPrice }}</td>
-        <td>{{ car.description }}</td>
-      </tr>
+@if(!dataLoaded) {
+<div class="album">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      @for(i of fakeArray; track i){
+      <div class="col">
+        <div class="card shadow-sm" aria-hidden="true">
+          <svg
+            class="bd-placeholder-img card-img-top placeholder"
+            width="100%"
+            height="225"
+            xmlns="http://www.w3.org/2000/svg"
+            role="img"
+            aria-label="Placeholder"
+            preserveAspectRatio="xMidYMid slice"
+            focusable="false"
+          >
+            <title>Placeholder</title>
+            <rect width="100%" height="100%" fill="#868e96"></rect>
+          </svg>
+          <div class="card-body bg-body-tertiary">
+            <h5 class="card-title placeholder-glow">
+              <span class="placeholder col-6"></span>
+            </h5>
+            <p class="card-text placeholder-glow">
+              <span class="placeholder col-7"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-4"></span>
+              <span class="placeholder col-6"></span>
+              <span class="placeholder col-8"></span>
+            </p>
+            <a
+              class="btn btn-primary disabled placeholder col-6"
+              aria-disabled="true"
+            ></a>
+          </div>
+        </div>
+      </div>
       }
-    </tbody>
-  </table>
+    </div>
+  </div>
 </div>
-}@else {
-<div class="spinner-border" role="status">
-  <span class="visually-hidden">Loading...</span>
+} @else if(dataLoaded && carsDetail.length == 0){
+<h1>Araba bulunamadı</h1>
+} @else{
+<div class="album">
+  <div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      @for(car of carsDetail; track car.id){
+      <div routerLink="/car/{{ car.id }}" class="col">
+        <div class="card shadow-sm">
+          <img
+            [src]="thumbnailImage[car.id]"
+            class="card-img-top object-fit-contain"
+            alt="{{ car.carName }}"
+            width="100%"
+            height="225"
+          />
+          <div class="card-body bg-body-tertiary">
+            <h5 class="card-title">{{ car.brandName }} {{ car.carName }}</h5>
+            <p class="card-text">Renk: {{ car.colorName }}</p>
+            <p class="card-text">Model Yılı: {{ car.modelYear }}</p>
+            <p class="card-text">Günlük Fiyat: {{ car.dailyPrice }}</p>
+            <a routerLink="/car/{{ car.id }}" class="btn btn-primary"
+              >Detaylar</a
+            >
+          </div>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
 </div>
 }

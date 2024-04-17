@@ -1,10 +1,8 @@
-<h3>Müşteriler</h3>
 @if(dataLoaded){
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Kullanıcı Id</th>
         <th>Şirket Adı</th>
       </tr>
@@ -12,7 +10,6 @@
     <tbody>
       @for(customer of customers;track customer.id){
       <tr>
-        <td>{{ customer.id }}</td>
         <td>{{ customer.userId }}</td>
         <td>{{ customer.companyName }}</td>
       </tr>

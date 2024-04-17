@@ -1,10 +1,8 @@
-<h3>Kiralamalar</h3>
 @if(dataLoaded){
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Id</th>
         <th>Marka</th>
         <th>Müşteri Ad Soyad</th>
         <th>Alış Tarihi</th>
@@ -14,7 +12,6 @@
     <tbody>
       @for(rental of rentals; track rental.id){
       <tr>
-        <td>{{ rental.id }}</td>
         <td>{{ rental.brandName }}</td>
         <td>{{ rental.customerFullName }}</td>
         <td>{{ rental.rentDate }}</td>

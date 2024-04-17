@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <app-navi></app-navi>
   <div class="row">
     <div class="col">
@@ -25,4 +25,24 @@
     </div>
   </div>
   <router-outlet />
+</div> -->
+
+<app-navi></app-navi>
+<div class="container">
+  <div class="row my-4">
+    <div class="col-md-3">
+      <div class="row mb-4">
+        <app-brand></app-brand>
+      </div>
+      <div class="row">
+        <app-color></app-color>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="row">
+        <router-outlet />
+      </div>
+    </div>
+  </div>
 </div>
+<app-footer></app-footer>

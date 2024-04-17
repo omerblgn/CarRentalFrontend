@@ -1,10 +1,8 @@
-<h3>Kullanıcılar</h3>
 @if(dataLoaded){
 <div class="table-responsive">
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Id</th>
         <th>E-posta</th>
         <th>Ad</th>
         <th>Soyad</th>
@@ -13,7 +11,6 @@
     <tbody>
       @for(user of users; track user.id){
       <tr>
-        <td>{{ user.id }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.firstName }}</td>
         <td>{{ user.lastName }}</td>

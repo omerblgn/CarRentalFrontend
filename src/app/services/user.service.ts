@@ -8,11 +8,12 @@ import { User } from '../models/user';
   providedIn: 'root',
 })
 export class UserService {
-  apiUrl = 'https://localhost:7284/api/Users/';
+  apiUrl = 'https://localhost:7284/api/';
 
   constructor(private httpClient: HttpClient) {}
 
   getUsers(): Observable<ListResponseModel<User>> {
-    return this.httpClient.get<ListResponseModel<User>>(this.apiUrl + 'getall');
+    let newPath = this.apiUrl + 'users/getall';
+    return this.httpClient.get<ListResponseModel<User>>(newPath);
   }
 }

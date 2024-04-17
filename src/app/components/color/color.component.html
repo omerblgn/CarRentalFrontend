@@ -1,25 +1,32 @@
-<h3>Renkler</h3>
-@if(dataLoaded){
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Id</th>
-        <th>Renk</th>
-      </tr>
-    </thead>
-    <tbody>
-      @for(color of colors;track color.id){
-      <tr>
-        <td>{{ color.id }}</td>
-        <td>{{ color.name }}</td>
-      </tr>
-      }
-    </tbody>
-  </table>
+<div class="card">
+  <div class="card-header">Renkler</div>
+  <ul class="list-group list-group-flush">
+    @if(dataLoaded){ @for(color of colors;track color.id){
+    <li
+      routerLink="/cars/color/{{ color.id }}"
+      routerLinkActive="active"
+      [ariaCurrentWhenActive]="true"
+      class="list-group-item"
+      role="button"
+    >
+      {{ color.name }}
+    </li>
+    } }@else {
+    <li class="list-group-item placeholder-glow">
+      <span class="placeholder col-12"></span>
+    </li>
+    <li class="list-group-item placeholder-glow">
+      <span class="placeholder col-12"></span>
+    </li>
+    <li class="list-group-item placeholder-glow">
+      <span class="placeholder col-12"></span>
+    </li>
+    <li class="list-group-item placeholder-glow">
+      <span class="placeholder col-12"></span>
+    </li>
+    <li class="list-group-item placeholder-glow">
+      <span class="placeholder col-12"></span>
+    </li>
+    }
+  </ul>
 </div>
-}@else {
-<div class="spinner-border" role="status">
-  <span class="visually-hidden">Loading...</span>
-</div>
-}
