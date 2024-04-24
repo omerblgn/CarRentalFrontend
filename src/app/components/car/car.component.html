@@ -1,4 +1,46 @@
-@if(!dataLoaded) {
+@if(dataLoaded && carsDetail.length > 0){
+<div class="album">
+  <input
+    [(ngModel)]="filterText"
+    class="form-control mb-2"
+    type="search"
+    placeholder="Ara"
+    aria-label="Ara"
+  />
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    @for(car of carsDetail | carFilter: filterText; track car.id){
+    <div routerLink="/car/{{ car.id }}" class="col">
+      <div class="card shadow-sm">
+        <img
+          [src]="thumbnailImage[car.id]"
+          class="card-img-top object-fit-contain"
+          alt="{{ car.carName }}"
+          width="100%"
+          height="225"
+        />
+        <div class="card-body bg-body-tertiary">
+          <p
+            class="card-subtitle border border-primary-subtle bg-primary-subtle text-primary-emphasis px-2"
+          >
+            {{ car.modelYear }}
+          </p>
+          <h5 class="card-title">{{ car.brandName }} {{ car.carName }}</h5>
+          <p class="card-text text-primary-emphasis">
+            {{ car.dailyPrice | currency : "TRY" : "symbol" : "0.0-2" : "tr" }}
+            <span> / Gün</span>
+          </p>
+          <a routerLink="/car/{{ car.id }}" class="btn btn-primary">Detaylar</a>
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+</div>
+} @else if(dataLoaded && carsDetail.length == 0){
+<div class="alert alert-danger" role="alert">
+  Araba bulunamadı. <a routerLink="/" class="alert-link">Ana sayfa</a>ya dön.
+</div>
+} @else {
 <div class="album">
   <div class="container">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -33,37 +75,6 @@
               class="btn btn-primary disabled placeholder col-6"
               aria-disabled="true"
             ></a>
-          </div>
-        </div>
-      </div>
-      }
-    </div>
-  </div>
-</div>
-} @else if(dataLoaded && carsDetail.length == 0){
-<h1>Araba bulunamadı</h1>
-} @else{
-<div class="album">
-  <div class="container">
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      @for(car of carsDetail; track car.id){
-      <div routerLink="/car/{{ car.id }}" class="col">
-        <div class="card shadow-sm">
-          <img
-            [src]="thumbnailImage[car.id]"
-            class="card-img-top object-fit-contain"
-            alt="{{ car.carName }}"
-            width="100%"
-            height="225"
-          />
-          <div class="card-body bg-body-tertiary">
-            <h5 class="card-title">{{ car.brandName }} {{ car.carName }}</h5>
-            <p class="card-text">Renk: {{ car.colorName }}</p>
-            <p class="card-text">Model Yılı: {{ car.modelYear }}</p>
-            <p class="card-text">Günlük Fiyat: {{ car.dailyPrice }}</p>
-            <a routerLink="/car/{{ car.id }}" class="btn btn-primary"
-              >Detaylar</a
-            >
           </div>
         </div>
       </div>

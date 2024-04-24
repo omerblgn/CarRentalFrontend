@@ -3,3 +3,36 @@
         display: none !important;
     }
 }
+
+label {
+    display: block;
+    width: 80px;
+    height: 40px;
+    background-color: var(--bs-tertiary-color);
+    border-radius: 100px;
+    position: relative;
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+label::after {
+    content: "\F494";
+    font-family: "Bootstrap-icons";
+    width: 30px;
+    height: 30px;
+    background-color: var(--bs-tertiary-bg);
+    position: absolute;
+    border-radius: 50%;
+    top: 5px;
+    left: 5px;
+    transition: 0.5s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+input:checked+label:after {
+    content: "\F5A1";
+    left: calc(100% - 5px);
+    transform: translateX(-100%) rotate(360deg);
+}

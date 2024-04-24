@@ -1,0 +1,73 @@
+<form class="row row-cols-sm-auto mb-3 justify-content-center">
+  <div class="col-12">
+    <div class="dp-hidden position-absolute">
+      <div class="input-group">
+        <input
+          name="datepicker"
+          class="form-control"
+          ngbDatepicker
+          #datepicker="ngbDatepicker"
+          [autoClose]="'outside'"
+          (dateSelect)="onDateSelection($event, datepicker)"
+          [displayMonths]="2"
+          [dayTemplate]="t"
+          outsideDays="hidden"
+          [startDate]="fromDate!"
+          tabindex="-1"
+          [minDate]="minDate"
+          [maxDate]="maxDate"
+        />
+        <ng-template #t let-date let-focused="focused">
+          <span
+            class="custom-day"
+            [class.focused]="focused"
+            [class.range]="isRange(date)"
+            [class.faded]="isHovered(date) || isInside(date)"
+            (mouseenter)="hoveredDate = date"
+            (mouseleave)="hoveredDate = null"
+          >
+            {{ date.day }}
+          </span>
+        </ng-template>
+      </div>
+    </div>
+    <div class="input-group">
+      <div class="form-floating">
+        <input
+          #dpFromDate
+          class="form-control"
+          [ngClass]="{ 'is-invalid': !fromDate }"
+          placeholder="Teslim Alma Tarihi"
+          name="dpFromDate"
+          id="dpFromDate"
+          [value]="formatter.format(fromDate)"
+          (input)="fromDate = validateInput(fromDate, dpFromDate.value)"
+          (click)="datepicker.toggle()"
+          readonly
+        />
+        <label for="dpFromDate">Teslim Alma Tarihi</label>
+      </div>
+      <span class="input-group-text">-</span>
+      <div class="form-floating">
+        <input
+          #dpToDate
+          class="form-control"
+          [ngClass]="{ 'is-invalid': !toDate }"
+          placeholder="Teslim Etme Tarihi"
+          name="dpToDate"
+          id="dpToDate"
+          [value]="formatter.format(toDate)"
+          (input)="toDate = validateInput(toDate, dpToDate.value)"
+          (click)="datepicker.toggle()"
+          readonly
+        />
+        <label for="dpToDate">Teslim Etme Tarihi</label>
+      </div>
+      <button
+        class="btn btn-outline-secondary bi bi-calendar3 border text-bg-tertiary"
+        (click)="datepicker.toggle()"
+        type="button"
+      ></button>
+    </div>
+  </div>
+</form>

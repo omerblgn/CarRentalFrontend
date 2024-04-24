@@ -1,14 +1,26 @@
+import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CarDetail } from '../../models/carDetail';
 import { CarImages } from '../../models/carImages';
+import { CarFilterPipe } from '../../pipes/car-filter.pipe';
 import { CarImageService } from '../../services/car-image.service';
 import { CarService } from '../../services/car.service';
+import { BrandComponent } from '../filterElements/brand/brand.component';
+import { ColorComponent } from '../filterElements/color/color.component';
 
 @Component({
   selector: 'app-car',
   standalone: true,
-  imports: [RouterLink],
+  imports: [
+    RouterLink,
+    FormsModule,
+    CarFilterPipe,
+    BrandComponent,
+    ColorComponent,
+    CommonModule,
+  ],
   templateUrl: './car.component.html',
   styleUrl: './car.component.css',
 })
@@ -17,8 +29,8 @@ export class CarComponent implements OnInit {
   carImages: CarImages[] = [];
   thumbnailImage: string[] = [];
   dataLoaded = false;
-  baseUrl = 'https://localhost:7284';
   fakeArray = Array(6);
+  filterText: '';
 
   constructor(
     private carService: CarService,
@@ -27,36 +39,39 @@ export class CarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.params.subscribe((params) => {
-      if (params['brandId']) {
-        this.getCarsWithDetailsByBrand(params['brandId']);
-      } else if (params['colorId']) {
-        this.getCarsWithDetailsByColor(params['colorId']);
-      } else {
-        this.getCarsWithDetails();
-      }
+    this.activatedRoute.queryParams.subscribe((params) => {
+      this.getCarsWithDetailsByColorAndBrand(
+        params['brandNames'],
+        params['colorNames'],
+        params['minPrice'],
+        params['maxPrice'],
+        params['minYear'],
+        params['maxYear']
+      );
     });
   }
 
-  getCarsWithDetails() {
-    this.carService.getCarsWithDetails().subscribe((response) => {
-      this.carsDetail = response.data;
-      this.getCarImages();
-    });
-  }
-
-  getCarsWithDetailsByBrand(brandId: number) {
-    this.carService.getCarsWithDetailsByBrand(brandId).subscribe((response) => {
-      this.carsDetail = response.data;
-      this.getCarImages();
-    });
-  }
-
-  getCarsWithDetailsByColor(brandId: number) {
-    this.carService.getCarsWithDetailsByColor(brandId).subscribe((response) => {
-      this.carsDetail = response.data;
-      this.getCarImages();
-    });
+  getCarsWithDetailsByColorAndBrand(
+    brandNames: string,
+    colorNames: string,
+    minPrice: number,
+    maxPrice: number,
+    minYear: string,
+    maxYear: string
+  ) {
+    this.carService
+      .getCarsWithDetailsByColorAndBrand(
+        brandNames,
+        colorNames,
+        minPrice,
+        maxPrice,
+        minYear,
+        maxYear
+      )
+      .subscribe((response) => {
+        this.carsDetail = response.data;
+        this.getCarImages();
+      });
   }
 
   getCarImages() {
@@ -69,16 +84,25 @@ export class CarComponent implements OnInit {
   }
 
   getThumbnailImage(carId: number) {
-    this.carImageService.getCarImagesByCarId(carId).subscribe((response) => {
-      let result = response.data;
-      const firstImage = result[0];
-      if (firstImage.imagePath.startsWith('wwwroot')) {
-        this.thumbnailImage[carId] =
-          this.baseUrl + firstImage.imagePath.substring(7);
-      } else {
-        this.thumbnailImage[carId] = this.baseUrl + firstImage.imagePath;
-      }
-      this.dataLoaded = true;
-    });
+    let filteredImages = this.carImages.filter((c) => c.carId == carId);
+    if (filteredImages.length !== 0) {
+      let firstImagePath = filteredImages[0].imagePath;
+      this.createImageUrl(firstImagePath, carId);
+    } else {
+      this.carImageService.getCarImagesByCarId(carId).subscribe((response) => {
+        let firstImagePath = response.data[0].imagePath;
+        this.createImageUrl(firstImagePath, carId);
+      });
+    }
+    this.dataLoaded = true;
+  }
+
+  createImageUrl(imagePath: string, carId: number) {
+    const baseUrl = 'https://localhost:7284';
+    if (imagePath.startsWith('wwwroot')) {
+      this.thumbnailImage[carId] = baseUrl + imagePath.substring(7);
+    } else {
+      this.thumbnailImage[carId] = baseUrl + imagePath;
+    }
   }
 }

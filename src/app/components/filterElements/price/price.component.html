@@ -1,0 +1,19 @@
+<label class="form-label mb-2">Günlük Fiyat</label>
+<div class="input-group">
+  <input
+    type="number"
+    [(ngModel)]="minPrice"
+    class="form-control"
+    placeholder="min"
+    [max]="maxPrice"
+  />
+  <span class="input-group-text">-</span>
+  <input
+    type="number"
+    [(ngModel)]="maxPrice"
+    class="form-control"
+    placeholder="max"
+    [min]="minPrice"
+  />
+  <span class="input-group-text">&#8378;</span>
+</div>

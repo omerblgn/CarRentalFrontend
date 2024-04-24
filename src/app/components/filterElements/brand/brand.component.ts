@@ -1,19 +1,22 @@
 import { Component, OnInit } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
-import { Brand } from '../../models/brand';
-import { BrandService } from '../../services/brand.service';
+import { Brand } from '../../../models/brand';
+import { BrandFilterPipe } from '../../../pipes/brand-filter.pipe';
+import { BrandService } from '../../../services/brand.service';
 
 @Component({
   selector: 'app-brand',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, FormsModule, BrandFilterPipe],
   templateUrl: './brand.component.html',
   styleUrl: './brand.component.css',
 })
 export class BrandComponent implements OnInit {
   brands: Brand[] = [];
-  currentBrand: Brand;
   dataLoaded = false;
+  filterText = '';
+  selectedBrands: { [key: string]: boolean } = {};
 
   constructor(private brandService: BrandService) {}
 
@@ -28,15 +31,8 @@ export class BrandComponent implements OnInit {
     });
   }
 
-  setCurrentBrand(brand: Brand) {
-    this.currentBrand = brand;
-  }
-
-  getCurrentBrandClass(brand: Brand) {
-    if (brand == this.currentBrand) {
-      return 'list-group-item list-group-item-action active';
-    } else {
-      return 'list-group-item list-group-item-action';
-    }
+  clearFilters() {
+    this.selectedBrands = {};
+    this.filterText = '';
   }
 }

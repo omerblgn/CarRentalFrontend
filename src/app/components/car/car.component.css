@@ -1,15 +1,26 @@
-.col {
+.card {
     cursor: pointer;
-}
-
-.col img {
-    transition: transform 0.5s ease;
-}
-
-.col:hover img {
-    transform: scale(1.25);
-}
-
-.col .card {
     overflow: hidden;
+
+    img {
+        transition: transform 0.5s ease;
+    }
+
+    &:hover img {
+        transform: scale(1.25);
+    }
+
+    .card-subtitle {
+        display: inline-block;
+        border-radius: .5rem;
+    }
+
+    .card-text {
+        font-size: 2rem;
+
+        span {
+            font-size: initial;
+            color: initial;
+        }
+    }
 }

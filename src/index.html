@@ -1,13 +1,38 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>Rent A Car</title>
-  <base href="/">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="./assets/logo.png">
-</head>
-<body>
-  <app-root></app-root>
-</body>
+<!DOCTYPE html>
+<html lang="tr">
+  <head>
+    <meta charset="utf-8" />
+    <title>Rental Car</title>
+    <base href="/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="./assets/logo.png" />
+  </head>
+  <body>
+    <app-root></app-root>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const switchTheme = document.getElementById("switchTheme");
+
+        const prefersDarkMode =
+          window.matchMedia &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+        if (prefersDarkMode) {
+          document.documentElement.setAttribute("data-bs-theme", "dark");
+          switchTheme.checked = false;
+        } else {
+          document.documentElement.setAttribute("data-bs-theme", "light");
+          switchTheme.checked = true;
+        }
+
+        switchTheme.addEventListener("change", function () {
+          if (this.checked) {
+            document.documentElement.setAttribute("data-bs-theme", "light");
+          } else {
+            document.documentElement.setAttribute("data-bs-theme", "dark");
+          }
+        });
+      });
+    </script>
+  </body>
 </html>

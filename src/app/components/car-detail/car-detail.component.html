@@ -1,64 +1,4 @@
-<!-- @if(dataLoaded){
-<div class="row">
-  <div class="col-7">
-    <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
-      <div *ngIf="carImages.length > 1" class="carousel-indicators">
-        @for(image of carImages; track image.id; let idx = $index){
-        <button
-          type="button"
-          data-bs-target="#carouselExampleIndicators"
-          [attr.data-bs-slide-to]="idx"
-          [class.active]="idx == 0"
-          aria-current="true"
-          attr.aria-label="Slide {{ idx + 1 }}"
-        ></button>
-        }
-      </div>
-      <div class="carousel-inner">
-        @for(image of carImages; track image.id; let first = $first){
-        <div class="carousel-item" [class.active]="first">
-          <img
-            [src]="getImagePath(image.imagePath)"
-            class="d-block w-100"
-            alt="{{ image.imagePath }}"
-          />
-        </div>
-        }
-      </div>
-      <button
-        *ngIf="carImages.length > 1"
-        class="carousel-control-prev"
-        type="button"
-        data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="prev"
-        style="color: red"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Previous</span>
-      </button>
-      <button
-        *ngIf="carImages.length > 1"
-        class="carousel-control-next"
-        type="button"
-        data-bs-target="#carouselExampleIndicators"
-        data-bs-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="visually-hidden">Next</span>
-      </button>
-    </div>
-  </div>
-  <div class="col-5">
-    {{ car.brandName }}
-    {{ car.carName }}
-    {{ car.colorName }}
-    {{ car.dailyPrice }}
-    {{ car.description }}
-    {{ car.modelYear }}
-  </div>
-</div>
-} -->
-
+@if(dataLoaded){
 <div class="card">
   <div id="carouselExampleIndicators" class="carousel carousel-dark slide">
     <div *ngIf="carImages.length > 1" class="carousel-indicators">
@@ -73,12 +13,12 @@
       ></button>
       }
     </div>
-    <div class="carousel-inner">
+    <div class="carousel-inner w-100" style="height: 20rem">
       @for(image of carImages; track image.id; let first = $first){
-      <div class="carousel-item" [class.active]="first">
+      <div class="carousel-item h-100 w-100" [class.active]="first">
         <img
           [src]="getImagePath(image.imagePath)"
-          class="d-block w-100"
+          class="d-block h-100 w-100 object-fit-contain"
           alt="{{ image.imagePath }}"
         />
       </div>
@@ -90,7 +30,6 @@
       type="button"
       data-bs-target="#carouselExampleIndicators"
       data-bs-slide="prev"
-      style="color: red"
     >
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
@@ -107,10 +46,24 @@
     </button>
   </div>
   <div class="card-body">
-    <h5 class="card-title">{{ car.brandName }} {{ car.carName }}</h5>
-    <p class="card-text">Renk: {{ car.colorName }}</p>
-    <p class="card-text">Model Yılı: {{ car.modelYear }}</p>
-    <p class="card-text">Günlük Fiyat: {{ car.dailyPrice }}</p>
-    <a routerLink="#" class="btn btn-primary">Kirala</a>
+    <h5 class="card-title">
+      {{ carDetail.brandName }} {{ carDetail.carName }}
+    </h5>
+    <p class="card-text">
+      Renk: {{ carDetail.colorName }} <br />
+      Model Yılı: {{ carDetail.modelYear }}<br />
+      Günlük Fiyat:
+      {{ carDetail.dailyPrice | currency : "TRY" : "symbol" : "0.0-2" : "tr" }}
+      <br />
+      Açıklama: {{ carDetail.description }}
+    </p>
+
+    <app-datepicker
+      (sendFromDate)="setFromDate($event)"
+      (sendToDate)="setToDate($event)"
+    ></app-datepicker>
+
+    <a (click)="rentCar()" class="btn btn-primary">Kirala</a>
   </div>
 </div>
+}

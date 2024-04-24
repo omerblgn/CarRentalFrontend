@@ -1,0 +1,32 @@
+<label for="filterBrand" class="mb-2">Markalar</label>
+@if(dataLoaded){
+<input
+  [(ngModel)]="filterText"
+  id="filterBrand"
+  class="form-control mb-2"
+  type="search"
+  placeholder="Ara"
+  aria-label="Ara"
+/>
+<ul class="list-group list-group" style="max-height: 25vh; overflow-y: auto">
+  @for(brand of brands | brandFilter: filterText; track brand.id) {
+  <li class="list-group-item">
+    <input
+      [(ngModel)]="selectedBrands[brand.name]"
+      class="form-check-input me-1"
+      type="checkbox"
+      id="{{ 'brand-checkbox-' + brand.id }}"
+    />
+    <label class="form-check-label" for="{{ 'brand-checkbox-' + brand.id }}">{{
+      brand.name
+    }}</label>
+  </li>
+  }
+</ul>
+}@else{
+<div class="placeholder-glow" style="max-height: 25vh; overflow-y: auto">
+  <span class="form-check-label placeholder col-12"></span>
+  <span class="form-check-label placeholder col-12"></span>
+  <span class="form-check-label placeholder col-12"></span>
+</div>
+}

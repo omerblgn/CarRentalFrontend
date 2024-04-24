@@ -1,0 +1,52 @@
+<div class="card shadow-sm mb-3">
+  <div
+    class="card-body d-flex flex-column justify-content-start align-items-start"
+  >
+    <div class="d-flex justify-content-between align-items-center w-100">
+      <h5
+        class="card-title m-0 user-select-none"
+        data-bs-toggle="collapse"
+        data-bs-target="#collapseExample"
+        (click)="toggleCollapse()"
+        [attr.aria-expanded]="isExpanded ? 'true' : 'false'"
+        aria-controls="collapseExample"
+        role="button"
+      >
+        Filtreler
+        <i
+          class="bi {{ isExpanded ? 'bi-chevron-up' : 'bi-chevron-down' }}"
+        ></i>
+      </h5>
+      <button
+        type="button"
+        class="btn btn-link btn-sm p-0"
+        (click)="clearFilters()"
+      >
+        Temizle
+      </button>
+    </div>
+    <div
+      class="collapse mt-3 w-100"
+      [ngClass]="{ show: isExpanded }"
+      id="collapseExample"
+    >
+      <div class="d-flex flex-column justify-content-start mb-3 w-100">
+        <app-brand></app-brand>
+      </div>
+      <div class="d-flex flex-column justify-content-start mb-3 w-100">
+        <app-color></app-color>
+      </div>
+      <div class="d-flex flex-column justify-content-start mb-3 w-100">
+        <app-price></app-price>
+      </div>
+      <div class="d-flex flex-column justify-content-start mb-3 w-100">
+        <app-model-year></app-model-year>
+      </div>
+      <div class="d-flex flex-column justify-content-start w-100">
+        <button (click)="applyFilters()" class="btn btn-primary">
+          Filtrele
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

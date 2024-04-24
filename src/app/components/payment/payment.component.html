@@ -1,0 +1,149 @@
+<form
+  class="row g-3"
+  [formGroup]="paymentForm"
+  (ngSubmit)="paymentForm.valid && payment()"
+>
+  <div class="col-12">
+    <label for="cardName" class="form-label">Kart adı</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          paymentForm.get('cardName')?.invalid &&
+          paymentForm.get('cardName')?.touched,
+        'is-valid':
+          paymentForm.get('cardName')?.valid &&
+          paymentForm.get('cardName')?.touched
+      }"
+      id="cardName"
+      placeholder="Ad Soyad"
+      formControlName="cardName"
+      autocomplete="off"
+      required
+    />
+    <div
+      *ngIf="
+        paymentForm.get('cardName')?.invalid &&
+        paymentForm.get('cardName')?.touched
+      "
+      class="invalid-feedback"
+    >
+      Kart adı boş bırakılamaz.
+    </div>
+  </div>
+  <div class="col-12">
+    <label for="cardNumber" class="form-label">Kart numarası</label>
+    <input
+      type="number"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          paymentForm.get('cardNumber')?.invalid &&
+          paymentForm.get('cardNumber')?.touched,
+        'is-valid':
+          paymentForm.get('cardNumber')?.valid &&
+          paymentForm.get('cardNumber')?.touched
+      }"
+      id="cardNumber"
+      placeholder="0000 0000 0000 0000"
+      formControlName="cardNumber"
+      required
+    />
+    <div
+      *ngIf="
+        paymentForm.get('cardNumber')?.invalid &&
+        paymentForm.get('cardNumber')?.touched
+      "
+      class="invalid-feedback"
+    >
+      Kart numarası 16 karakter olmalıdır.
+    </div>
+  </div>
+  <div class="col-6">
+    <label for="expirationDate" class="form-label">Geçerlilik tarihi</label>
+    <div class="input-group">
+      <input
+        type="number"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            paymentForm.get('expiryMonth')?.invalid &&
+            paymentForm.get('expiryMonth')?.touched,
+          'is-valid':
+            paymentForm.get('expiryMonth')?.valid &&
+            paymentForm.get('expiryMonth')?.touched
+        }"
+        placeholder="00"
+        formControlName="expiryMonth"
+        required
+      />
+      <span class="input-group-text">/</span>
+      <input
+        type="number"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            paymentForm.get('expiryYear')?.invalid &&
+            paymentForm.get('expiryYear')?.touched,
+          'is-valid':
+            paymentForm.get('expiryYear')?.valid &&
+            paymentForm.get('expiryYear')?.touched
+        }"
+        placeholder="00"
+        formControlName="expiryYear"
+        required
+      />
+      <div
+        *ngIf="
+          paymentForm.get('expiryMonth')?.invalid &&
+          paymentForm.get('expiryMonth')?.touched
+        "
+        class="invalid-feedback"
+      >
+        Ay 1 ile 12 arasında olmalıdır.
+      </div>
+      <div
+        *ngIf="
+          paymentForm.get('expiryYear')?.invalid &&
+          paymentForm.get('expiryYear')?.touched
+        "
+        class="invalid-feedback"
+      >
+        Yıl 00 ile 99 arasında olmalıdır.
+      </div>
+    </div>
+  </div>
+  <div class="col-6">
+    <label for="cvv" class="form-label">CVV</label>
+    <input
+      type="number"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched,
+        'is-valid':
+          paymentForm.get('cvv')?.valid && paymentForm.get('cvv')?.touched
+      }"
+      id="cvv"
+      placeholder="000"
+      formControlName="cvv"
+      required
+    />
+    <div
+      *ngIf="paymentForm.get('cvv')?.invalid && paymentForm.get('cvv')?.touched"
+      class="invalid-feedback"
+    >
+      CVV 3 karakter olmalıdır.
+    </div>
+  </div>
+  <div class="col-12">
+    <button
+      type="submit"
+      class="btn btn-primary w-100"
+      [disabled]="paymentForm.invalid"
+    >
+      Öde
+    </button>
+  </div>
+</form>
