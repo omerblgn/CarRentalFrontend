@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { CarImages } from '../models/carImages';
 import { ListResponseModel } from '../models/listResponseModel';
+import { ResponseModel } from '../models/responseModel';
 
 @Injectable({
   providedIn: 'root',
@@ -20,5 +21,10 @@ export class CarImageService {
   getCarImages(): Observable<ListResponseModel<CarImages>> {
     let newPath = this.apiUrl + 'carimages/getall';
     return this.httpClient.get<ListResponseModel<CarImages>>(newPath);
+  }
+
+  addCarImages(formData: FormData): Observable<ResponseModel> {
+    let newPath = this.apiUrl + 'carimages/add';
+    return this.httpClient.post<ResponseModel>(newPath, formData);
   }
 }

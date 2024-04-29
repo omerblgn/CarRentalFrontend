@@ -1,0 +1,7 @@
+.table> :not(caption)>*>.modal-dialog {
+    padding: 0;
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: var(--bs-heading-color);
+}

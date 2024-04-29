@@ -37,6 +37,10 @@ export class PaymentComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.createPaymentForm();
+  }
+
+  createPaymentForm() {
     this.paymentForm = this.formBuilder.group({
       cardName: ['', Validators.required],
       cardNumber: ['', [Validators.required, Validators.pattern(/^\d{16}$/)]],

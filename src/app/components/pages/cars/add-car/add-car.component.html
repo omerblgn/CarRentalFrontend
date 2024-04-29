@@ -1,0 +1,181 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title m-0">Araba Ekle</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="addCarForm" (ngSubmit)="addCarForm.valid && addCar()">
+      <div class="mb-3">
+        <label for="brandName" class="form-label">Marka adı</label>
+        <select
+          class="form-select"
+          [ngClass]="{
+            'is-invalid':
+              addCarForm.get('brandId')?.invalid &&
+              addCarForm.get('brandId')?.touched
+          }"
+          id="brandName"
+          formControlName="brandId"
+          required
+        >
+          <option selected disabled></option>
+          <option *ngFor="let brand of brands" [value]="brand.id">
+            {{ brand.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            addCarForm.get('brandId')?.invalid &&
+            addCarForm.get('brandId')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Marka adı boş bırakılamaz
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="colorName" class="form-label">Renk adı</label>
+        <select
+          class="form-select"
+          [ngClass]="{
+            'is-invalid':
+              addCarForm.get('colorId')?.invalid &&
+              addCarForm.get('colorId')?.touched
+          }"
+          id="colorName"
+          formControlName="colorId"
+          required
+        >
+          <option selected disabled></option>
+          <option *ngFor="let color of colors" [value]="color.id">
+            {{ color.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            addCarForm.get('colorId')?.invalid &&
+            addCarForm.get('colorId')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Renk adı boş bırakılamaz
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="carName" class="form-label">Model adı</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              addCarForm.get('name')?.invalid && addCarForm.get('name')?.touched
+          }"
+          id="carName"
+          formControlName="name"
+          required
+        />
+        <div
+          *ngIf="
+            addCarForm.get('name')?.invalid && addCarForm.get('name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Model adı boş bırakılamaz
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="modelYear" class="form-label">Model yılı</label>
+        <input
+          type="number"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              addCarForm.get('modelYear')?.invalid &&
+              addCarForm.get('modelYear')?.touched
+          }"
+          id="modelYear"
+          formControlName="modelYear"
+          required
+        />
+        <div
+          *ngIf="
+            addCarForm.get('modelYear')?.invalid &&
+            addCarForm.get('modelYear')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Model yılı boş bırakılamaz
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="dailyPrice" class="form-label">Günlük fiyat</label>
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                addCarForm.get('dailyPrice')?.invalid &&
+                addCarForm.get('dailyPrice')?.touched
+            }"
+            id="dailyPrice"
+            formControlName="dailyPrice"
+            required
+          />
+          <span class="input-group-text">₺</span>
+          <div
+            *ngIf="
+              addCarForm.get('dailyPrice')?.invalid &&
+              addCarForm.get('dailyPrice')?.touched
+            "
+            class="invalid-feedback"
+          >
+            Günlük fiyat boş bırakılamaz
+          </div>
+        </div>
+      </div>
+      <!-- <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Resim</label>
+        <input
+          class="form-control"
+          type="file"
+          id="formFileMultiple"
+          multiple
+          (change)="selectFiles($event)"
+          required
+        />
+      </div>
+      <div class="mb-3 d-flex justify-content-between">
+        @for(){
+          <img class="object-fit-contain" style="width: 100px;height: 100px;border: 1px solid;"/>
+        }
+      </div> -->
+      <div class="mb-3">
+        <label for="description" class="form-label">Açıklama</label>
+        <textarea
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              addCarForm.get('description')?.invalid &&
+              addCarForm.get('description')?.touched
+          }"
+          id="description"
+          formControlName="description"
+          rows="3"
+          required
+        ></textarea>
+        <div
+          *ngIf="
+            addCarForm.get('description')?.invalid &&
+            addCarForm.get('description')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Açıklama boş bırakılamaz
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="addCarForm.invalid">
+        Ekle
+      </button>
+    </form>
+  </div>
+</div>

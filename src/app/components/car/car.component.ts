@@ -7,8 +7,8 @@ import { CarImages } from '../../models/carImages';
 import { CarFilterPipe } from '../../pipes/car-filter.pipe';
 import { CarImageService } from '../../services/car-image.service';
 import { CarService } from '../../services/car.service';
-import { BrandComponent } from '../filterElements/brand/brand.component';
-import { ColorComponent } from '../filterElements/color/color.component';
+import { BrandComponent } from '../filter/brand/brand.component';
+import { ColorComponent } from '../filter/color/color.component';
 
 @Component({
   selector: 'app-car',

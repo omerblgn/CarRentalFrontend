@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title m-0">Renk Ekle</h5>
+  </div>
+  <div class="card-body">
+    <form
+      [formGroup]="addColorForm"
+      (ngSubmit)="addColorForm.valid && addColor()"
+    >
+      <div class="mb-3">
+        <label for="colorName" class="form-label">Renk adı</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              addColorForm.get('name')?.invalid &&
+              addColorForm.get('name')?.touched
+          }"
+          id="colorName"
+          formControlName="name"
+          required
+        />
+        <div
+          *ngIf="
+            addColorForm.get('name')?.invalid &&
+            addColorForm.get('name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Renk adı boş bırakılamaz
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="addColorForm.invalid">
+        Ekle
+      </button>
+    </form>
+  </div>
+</div>

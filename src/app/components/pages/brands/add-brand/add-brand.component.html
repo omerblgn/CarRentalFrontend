@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title m-0">Marka Ekle</h5>
+  </div>
+  <div class="card-body">
+    <form
+      [formGroup]="addBrandForm"
+      (ngSubmit)="addBrandForm.valid && addBrand()"
+    >
+      <div class="mb-3">
+        <label for="brandName" class="form-label">Marka adı</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              addBrandForm.get('name')?.invalid &&
+              addBrandForm.get('name')?.touched
+          }"
+          id="brandName"
+          formControlName="name"
+          required
+        />
+        <div
+          *ngIf="
+            addBrandForm.get('name')?.invalid &&
+            addBrandForm.get('name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Marka adı boş bırakılamaz
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="addBrandForm.invalid">
+        Ekle
+      </button>
+    </form>
+  </div>
+</div>

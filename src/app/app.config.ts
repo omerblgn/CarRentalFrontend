@@ -19,6 +19,7 @@ export const appConfig: ApplicationConfig = {
       maxOpened: 5,
       autoDismiss: true,
       progressBar: true,
+      disableTimeOut: 'extendedTimeOut',
     }),
   ],
 };

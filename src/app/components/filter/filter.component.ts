@@ -1,10 +1,10 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { BrandComponent } from '../filterElements/brand/brand.component';
-import { ColorComponent } from '../filterElements/color/color.component';
-import { ModelYearComponent } from '../filterElements/model-year/model-year.component';
-import { PriceComponent } from '../filterElements/price/price.component';
+import { BrandComponent } from './brand/brand.component';
+import { ColorComponent } from './color/color.component';
+import { ModelYearComponent } from './model-year/model-year.component';
+import { PriceComponent } from './price/price.component';
 
 @Component({
   selector: 'app-filter',

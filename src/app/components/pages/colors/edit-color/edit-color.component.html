@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title m-0">Renk Düzenle</h5>
+  </div>
+  <div class="card-body">
+    <form
+      [formGroup]="editColorForm"
+      (ngSubmit)="editColorForm.valid && editColor()"
+    >
+      <div class="mb-3">
+        <label for="brandName" class="form-label">Renk adı</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              editColorForm.get('name')?.invalid &&
+              editColorForm.get('name')?.touched
+          }"
+          id="brandName"
+          formControlName="name"
+          required
+        />
+        <div
+          *ngIf="
+            editColorForm.get('name')?.invalid &&
+            editColorForm.get('name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Marka adı boş bırakılamaz
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="editColorForm.invalid">
+        Kaydet
+      </button>
+    </form>
+  </div>
+</div>
