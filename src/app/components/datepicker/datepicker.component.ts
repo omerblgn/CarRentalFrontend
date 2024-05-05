@@ -4,7 +4,7 @@ import {
   EventEmitter,
   Injectable,
   Output,
-  inject,
+  inject
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {

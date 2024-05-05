@@ -28,7 +28,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      <ul class="navbar-nav me-auto mb-lg-0">
         <li class="nav-item">
           <a
             routerLink="/"
@@ -36,8 +36,9 @@
             [routerLinkActiveOptions]="{ exact: true }"
             ariaCurrentWhenActive="page"
             class="nav-link"
-            >Ana Sayfa</a
           >
+            Ana Sayfa
+          </a>
         </li>
         <li class="nav-item">
           <a
@@ -46,27 +47,78 @@
             [routerLinkActiveOptions]="{ exact: true }"
             ariaCurrentWhenActive="page"
             class="nav-link"
-            >Arabalar</a
+          >
+            Arabalar
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="isAuthenticated">
+          <a
+            routerLink="/admin"
+            routerLinkActive="active"
+            ariaCurrentWhenActive="page"
+            class="nav-link"
+            >Admin</a
           >
         </li>
       </ul>
-      <!-- <form class="d-flex" role="search">
+      @if(!isAuthenticated){
+      <div class="py-2">
+        <button
+          type="button"
+          class="btn btn-outline-primary me-2"
+          routerLink="/auth/login"
+        >
+          Giriş Yap
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          routerLink="/auth/register"
+        >
+          Kaydol
+        </button>
+      </div>
+      }@else{
+      <div class="dropdown py-2 user-select-none">
+        <a
+          class="d-block link-body-emphasis text-decoration-none dropdown-toggle"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+          role="button"
+        >
+          {{ fullName }}
+        </a>
+        <ul class="dropdown-menu text-small">
+          <li>
+            <a class="dropdown-item" role="button" routerLink="/profile">
+              Profil
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" role="button" routerLink="/credit-cards">
+              Kartlarım
+            </a>
+          </li>
+          <li><hr class="dropdown-divider" /></li>
+          <li>
+            <a class="dropdown-item" role="button" (click)="logout()">
+              Çıkış Yap
+            </a>
+          </li>
+        </ul>
+      </div>
+      }
+      <div class="vr mx-2 align-middle"></div>
+      <div class="py-2">
         <input
-          class="form-control me-2"
-          type="search"
-          placeholder="Ara"
-          aria-label="Ara"
+          type="checkbox"
+          role="switch"
+          id="switchTheme"
+          checked
+          style="display: none"
         />
-        <button class="btn btn-outline-primary" type="submit">Ara</button>
-      </form> -->
-      <input
-        type="checkbox"
-        role="switch"
-        id="switchTheme"
-        checked
-        style="display: none"
-      />
-      <label for="switchTheme" class="shadow-sm"></label>
+        <label for="switchTheme" class="shadow-sm"></label>
+      </div>
     </div>
   </div>
 </nav>

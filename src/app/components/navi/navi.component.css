@@ -2,12 +2,16 @@
     #logoTitle {
         display: none !important;
     }
+
+    .vr {
+        display: none;
+    }
 }
 
 label {
     display: block;
-    width: 80px;
-    height: 40px;
+    width: 40px;
+    height: 20px;
     background-color: var(--bs-tertiary-color);
     border-radius: 100px;
     position: relative;
@@ -18,13 +22,14 @@ label {
 label::after {
     content: "\F494";
     font-family: "Bootstrap-icons";
-    width: 30px;
-    height: 30px;
+    font-size: 10px;
+    width: 15px;
+    height: 15px;
     background-color: var(--bs-tertiary-bg);
     position: absolute;
     border-radius: 50%;
-    top: 5px;
-    left: 5px;
+    top: 2.5px;
+    left: 2.5px;
     transition: 0.5s;
     display: flex;
     align-items: center;
@@ -33,6 +38,6 @@ label::after {
 
 input:checked+label:after {
     content: "\F5A1";
-    left: calc(100% - 5px);
+    left: calc(100% - 2.5px);
     transform: translateX(-100%) rotate(360deg);
 }

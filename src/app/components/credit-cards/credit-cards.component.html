@@ -1,0 +1,38 @@
+<h2>Kartlarım</h2>
+@if(dataLoaded && creditCards.length > 0){ @for(creditCard of creditCards; track
+creditCard.id){
+<div class="card mb-3">
+  <div
+    class="card-body d-flex justify-content-between align-items-center gap-2"
+  >
+    <span class="text-truncate">{{ creditCard.cardName }}</span>
+    <span class="text-truncate">{{ creditCard.cardNumber }}</span>
+    <span class="text-truncate">
+      {{ creditCard.expiryMonth }}/{{ creditCard.expiryYear }}
+    </span>
+    <span class="text-truncate">{{ creditCard.cvv }}</span>
+    <span>
+      <button class="btn btn-sm btn-danger" (click)="deleteCard(creditCard)">
+        Sil
+      </button>
+    </span>
+  </div>
+</div>
+}}@else if(dataLoaded && creditCards.length == 0){
+<div class="alert alert-danger" role="alert">
+  Kayıtlı kredi kartı bulunamadı.
+  <a routerLink="/" class="alert-link">Ana sayfa</a>ya dön.
+</div>
+}@else {
+<div class="card mb-3">
+  <div
+    class="card-body d-flex justify-content-between align-items-center gap-2 placeholder-glow"
+  >
+    <span class="placeholder col-2"></span>
+    <span class="placeholder col-2"></span>
+    <span class="placeholder col-2"> </span>
+    <span class="placeholder col-2"></span>
+    <button class="btn btn-sm btn-danger disabled placeholder col-2"></button>
+  </div>
+</div>
+}

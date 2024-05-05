@@ -8,9 +8,10 @@ import { CarImages } from '../../models/carImages';
 import { Rental } from '../../models/rental';
 import { CarImageService } from '../../services/car-image.service';
 import { CarService } from '../../services/car.service';
+import { LocalStorageService } from '../../services/local-storage.service';
 import { RentalService } from '../../services/rental.service';
+import { UserService } from '../../services/user.service';
 import { DatepickerComponent } from '../datepicker/datepicker.component';
-import { error } from 'console';
 
 @Component({
   selector: 'app-car-detail',
@@ -26,14 +27,17 @@ export class CarDetailComponent implements OnInit {
   dataLoaded = false;
   fromDate: Date;
   toDate: Date;
+  userId: number;
 
   constructor(
     private carService: CarService,
     private carImageService: CarImageService,
     private rentalService: RentalService,
+    private userService: UserService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private localStorageService: LocalStorageService
   ) {}
 
   ngOnInit(): void {
@@ -42,6 +46,11 @@ export class CarDetailComponent implements OnInit {
         this.getCarDetails(params['carId']);
       }
     });
+
+    const email = this.localStorageService.get('email');
+    if (email) {
+      this.getUserByEmail(email);
+    }
   }
 
   getCarDetails(carId: number) {
@@ -71,7 +80,7 @@ export class CarDetailComponent implements OnInit {
 
     let rental: Rental = {
       carId: this.carDetail.id,
-      customerId: 5, //////giriş yapan kullanıcının id'si
+      customerId: this.userId,
       rentStartDate: this.fromDate,
       rentEndDate: this.toDate,
       returnDate: null,
@@ -87,6 +96,12 @@ export class CarDetailComponent implements OnInit {
         }
       }
     );
+  }
+
+  getUserByEmail(email: string) {
+    this.userService.getUserByEmail(email).subscribe((response) => {
+      this.userId = response.data.id;
+    });
   }
 
   setFromDate(fromDate: NgbDate) {

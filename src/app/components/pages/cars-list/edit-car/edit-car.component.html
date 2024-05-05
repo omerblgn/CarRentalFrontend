@@ -1,0 +1,200 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title m-0">Araba Düzenle</h5>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="editCarForm" (ngSubmit)="editCarForm.valid && editCar()">
+      <div class="mb-3">
+        <label for="brandName" class="form-label">Marka adı</label>
+        <select
+          class="form-select"
+          [ngClass]="{
+            'is-invalid':
+              editCarForm.get('brandId')?.invalid &&
+              editCarForm.get('brandId')?.touched
+          }"
+          id="brandName"
+          formControlName="brandId"
+          required
+        >
+          <option *ngFor="let brand of brands" [value]="brand.id">
+            {{ brand.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            editCarForm.get('brandId')?.invalid &&
+            editCarForm.get('brandId')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Marka adı boş bırakılamaz
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="colorName" class="form-label">Renk adı</label>
+        <select
+          class="form-select"
+          [ngClass]="{
+            'is-invalid':
+              editCarForm.get('colorId')?.invalid &&
+              editCarForm.get('colorId')?.touched
+          }"
+          id="colorName"
+          formControlName="colorId"
+          required
+        >
+          <option *ngFor="let color of colors" [value]="color.id">
+            {{ color.name }}
+          </option>
+        </select>
+        <div
+          *ngIf="
+            editCarForm.get('colorId')?.invalid &&
+            editCarForm.get('colorId')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Renk adı boş bırakılamaz
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="carName" class="form-label">Model adı</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              editCarForm.get('name')?.invalid &&
+              editCarForm.get('name')?.touched
+          }"
+          id="carName"
+          formControlName="name"
+          required
+        />
+        <div
+          *ngIf="
+            editCarForm.get('name')?.invalid && editCarForm.get('name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Model adı boş bırakılamaz
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="modelYear" class="form-label">Model yılı</label>
+        <input
+          type="number"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              editCarForm.get('modelYear')?.invalid &&
+              editCarForm.get('modelYear')?.touched
+          }"
+          id="modelYear"
+          formControlName="modelYear"
+          required
+        />
+        <div
+          *ngIf="
+            editCarForm.get('modelYear')?.invalid &&
+            editCarForm.get('modelYear')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Model yılı boş bırakılamaz
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="dailyPrice" class="form-label">Günlük fiyat</label>
+        <div class="input-group">
+          <input
+            type="number"
+            class="form-control"
+            [ngClass]="{
+              'is-invalid':
+                editCarForm.get('dailyPrice')?.invalid &&
+                editCarForm.get('dailyPrice')?.touched
+            }"
+            id="dailyPrice"
+            formControlName="dailyPrice"
+            required
+          />
+          <span class="input-group-text">₺</span>
+          <div
+            *ngIf="
+              editCarForm.get('dailyPrice')?.invalid &&
+              editCarForm.get('dailyPrice')?.touched
+            "
+            class="invalid-feedback"
+          >
+            Günlük fiyat boş bırakılamaz
+          </div>
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="formFileMultiple" class="form-label">Resim</label>
+        <input
+          class="form-control"
+          [ngClass]="{ 'is-invalid': maxImagesErrorMessage }"
+          type="file"
+          id="formFileMultiple"
+          formControlName="carImages"
+          multiple
+          (change)="selectFiles($event)"
+        />
+        <div *ngIf="maxImagesErrorMessage" class="invalid-feedback">
+          {{ maxImagesErrorMessage }}
+        </div>
+      </div>
+      @if(carImages.length > 0){
+      <div class="mb-3 d-flex justify-content-around">
+        @for(image of carImages;track image.id){
+        <div class="position-relative">
+          <img
+            class="object-fit-contain border"
+            [src]="getImagePath(image.imagePath)"
+            style="width: 100px; height: 100px"
+          />
+          <span
+            class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger d-flex align-items-center justify-content-center"
+            style="width: 20px; height: 20px"
+            (click)="deleteImage(image)"
+            role="button"
+          >
+            <button type="button" class="btn-close" aria-label="Close"></button>
+          </span>
+        </div>
+        }
+      </div>
+      }
+      <div class="mb-3">
+        <label for="description" class="form-label">Açıklama</label>
+        <textarea
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              editCarForm.get('description')?.invalid &&
+              editCarForm.get('description')?.touched
+          }"
+          id="description"
+          formControlName="description"
+          rows="3"
+          required
+        ></textarea>
+        <div
+          *ngIf="
+            editCarForm.get('description')?.invalid &&
+            editCarForm.get('description')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Açıklama boş bırakılamaz
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="editCarForm.invalid">
+        Kaydet
+      </button>
+    </form>
+  </div>
+</div>

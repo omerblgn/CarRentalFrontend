@@ -1,0 +1,16 @@
+.scroll-top {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: .5rem;
+    transition: all .5s;
+}
+
+.scroll-top:hover {
+    background-color: var(--bs-secondary-bg) !important;
+}
+
+.scroll-top.hidden {
+    opacity: 0;
+    visibility: hidden;
+}

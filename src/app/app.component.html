@@ -1,43 +1,21 @@
-<!-- <div class="container">
+<div class="container-xxl p-0 shadow-sm position-sticky top-0 z-3">
   <app-navi></app-navi>
-  <div class="row">
-    <div class="col">
-      <app-brand></app-brand>
-    </div>
-    <div class="col">
-      <app-color></app-color>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <app-customer></app-customer>
-    </div>
-    <div class="col">
-      <app-car></app-car>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col">
-      <app-rental></app-rental>
-    </div>
-    <div class="col">
-      <app-user></app-user>
-    </div>
-  </div>
-  <router-outlet />
-</div> -->
-
-<app-navi></app-navi>
+</div>
 <div class="container">
   <div class="row my-4">
-    <div class="col-md-3">
+    @if(!hideFilter){
+    <div class="col-lg-3">
       <app-filter></app-filter>
     </div>
-    <div class="col-md-9">
+    }
+    <div [ngClass]="{ 'col-lg-9': !hideFilter }">
       <div class="row">
         <router-outlet />
       </div>
     </div>
   </div>
 </div>
-<app-footer></app-footer>
+<div class="container-xxl mt-auto">
+  <app-footer></app-footer>
+</div>
+<app-scroll-top></app-scroll-top>

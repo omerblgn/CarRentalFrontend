@@ -1,8 +1,23 @@
+<h2>Ödeme</h2>
 <form
   class="row g-3"
   [formGroup]="paymentForm"
   (ngSubmit)="paymentForm.valid && payment()"
 >
+  @if(creditCards.length > 0){
+  <div class="col-12">
+    <select
+      class="form-select"
+      aria-label="Default select example"
+      (change)="onCardSelect($event)"
+    >
+      <option selected disabled>Kredi kartlarım</option>
+      @for(creditCard of creditCards;track creditCard.id){
+      <option value="{{ creditCard.id }}">{{ creditCard.cardNumber }}</option>
+      }
+    </select>
+  </div>
+  }
   <div class="col-12">
     <label for="cardName" class="form-label">Kart adı</label>
     <input
@@ -135,6 +150,19 @@
       class="invalid-feedback"
     >
       CVV 3 karakter olmalıdır.
+    </div>
+  </div>
+  <div class="col-12">
+    <div class="form-check">
+      <input
+        class="form-check-input"
+        type="checkbox"
+        id="saveCreditCard"
+        formControlName="saveCreditCard"
+      />
+      <label class="form-check-label" for="saveCreditCard">
+        Kredi kartım kaydedilsin
+      </label>
     </div>
   </div>
   <div class="col-12">

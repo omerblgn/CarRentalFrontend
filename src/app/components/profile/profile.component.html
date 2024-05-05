@@ -1,0 +1,123 @@
+<form
+  class="row g-3"
+  [formGroup]="profileForm"
+  (ngSubmit)="profileForm.valid && updateProfile()"
+>
+  <div class="col-12">
+    <label for="email" class="form-label">E-posta</label>
+    <input
+      type="email"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          profileForm.get('email')?.invalid &&
+          profileForm.get('email')?.touched,
+        'is-valid':
+          profileForm.get('email')?.valid && profileForm.get('email')?.touched
+      }"
+      id="email"
+      formControlName="email"
+      readonly
+    />
+    @if(profileForm.get('email')?.invalid && profileForm.get('email')?.touched){
+    <div class="invalid-feedback">E-posta boş bırakılamaz.</div>
+    }
+  </div>
+  <div class="col-12">
+    <label for="companyName" class="form-label">Şirket Adı</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          profileForm.get('companyName')?.invalid &&
+          profileForm.get('companyName')?.touched,
+        'is-valid':
+          profileForm.get('companyName')?.valid &&
+          profileForm.get('companyName')?.touched
+      }"
+      id="companyName"
+      formControlName="companyName"
+    />
+    @if(profileForm.get('companyName')?.invalid &&
+    profileForm.get('companyName')?.touched){
+    <div class="invalid-feedback">Şirket adı boş bırakılamaz.</div>
+    }
+  </div>
+  <div class="col-6">
+    <label for="firstName" class="form-label">Ad</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          profileForm.get('firstName')?.invalid &&
+          profileForm.get('firstName')?.touched,
+        'is-valid':
+          profileForm.get('firstName')?.valid &&
+          profileForm.get('firstName')?.touched
+      }"
+      id="firstName"
+      formControlName="firstName"
+    />
+    @if(profileForm.get('firstName')?.invalid &&
+    profileForm.get('firstName')?.touched){
+    <div class="invalid-feedback">Ad boş bırakılamaz.</div>
+    }
+  </div>
+  <div class="col-6">
+    <label for="lastName" class="form-label">Soyad</label>
+    <input
+      type="text"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          profileForm.get('lastName')?.invalid &&
+          profileForm.get('lastName')?.touched,
+        'is-valid':
+          profileForm.get('lastName')?.valid &&
+          profileForm.get('lastName')?.touched
+      }"
+      id="lastName"
+      formControlName="lastName"
+    />
+    @if(profileForm.get('lastName')?.invalid &&
+    profileForm.get('lastName')?.touched){
+    <div class="invalid-feedback">Soyad boş bırakılamaz.</div>
+    }
+  </div>
+  <div class="col-12">
+    <label for="password" class="form-label">Şifre</label>
+    <input
+      type="password"
+      class="form-control"
+      [ngClass]="{
+        'is-invalid':
+          profileForm.get('password')?.invalid &&
+          profileForm.get('password')?.touched,
+        'is-valid':
+          profileForm.get('password')?.valid &&
+          profileForm.get('password')?.touched
+      }"
+      id="password"
+      formControlName="password"
+    />
+    @if(profileForm.get('password')?.invalid &&
+    profileForm.get('password')?.touched){
+    <div class="invalid-feedback">
+      Şifre sadece boşluk karakterinden oluşamaz.
+    </div>
+    }@else {
+    <div class="form-text">
+      Şifrenizi değiştirmek istemiyorsanız boş bırakın
+    </div>
+    }
+  </div>
+  <button
+    type="submit"
+    class="btn btn-primary"
+    [disabled]="profileForm.invalid"
+  >
+    Güncelle
+  </button>
+</form>

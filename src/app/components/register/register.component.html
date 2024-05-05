@@ -1,0 +1,111 @@
+<div class="form-signin w-100 m-auto">
+  <form [formGroup]="registerForm" (submit)="registerForm.valid && register()">
+    <h1 class="h3 mb-3 fw-normal">Kaydol</h1>
+    <div class="form-floating mb-3">
+      <input
+        type="email"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('email')?.invalid &&
+            registerForm.get('email')?.touched
+        }"
+        id="floatingInput"
+        placeholder="name@example.com"
+        formControlName="email"
+      />
+      <div
+        *ngIf="
+          registerForm.get('email')?.invalid &&
+          registerForm.get('email')?.touched
+        "
+        class="invalid-feedback"
+      >
+        E-posta boş bırakılamaz
+      </div>
+      <label for="floatingInput">E-posta</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('firstName')?.invalid &&
+            registerForm.get('firstName')?.touched
+        }"
+        id="floatingfirstName"
+        placeholder="Ad"
+        formControlName="firstName"
+      />
+      <div
+        *ngIf="
+          registerForm.get('firstName')?.invalid &&
+          registerForm.get('firstName')?.touched
+        "
+        class="invalid-feedback"
+      >
+        Ad boş bırakılamaz
+      </div>
+      <label for="floatingfirstName">Ad</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="text"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('lastName')?.invalid &&
+            registerForm.get('lastName')?.touched
+        }"
+        id="floatingLastName"
+        placeholder="Soyad"
+        formControlName="lastName"
+      />
+      <div
+        *ngIf="
+          registerForm.get('lastName')?.invalid &&
+          registerForm.get('lastName')?.touched
+        "
+        class="invalid-feedback"
+      >
+        Soyad boş bırakılamaz
+      </div>
+      <label for="floatingLastName">Soyad</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input
+        type="password"
+        class="form-control"
+        [ngClass]="{
+          'is-invalid':
+            registerForm.get('password')?.invalid &&
+            registerForm.get('password')?.touched
+        }"
+        id="floatingPassword"
+        placeholder="Şifre"
+        formControlName="password"
+      />
+      <div
+        *ngIf="
+          registerForm.get('password')?.invalid &&
+          registerForm.get('password')?.touched
+        "
+        class="invalid-feedback"
+      >
+        Şifre boş bırakılamaz
+      </div>
+      <label for="floatingPassword">Şifre</label>
+    </div>
+    <button class="btn btn-primary w-100 py-2" type="submit">Kaydol</button>
+  </form>
+  <div class="form-text mt-2">
+    Zaten hesabınız var mı?
+    <span
+      routerLink="/auth/login"
+      class="text-decoration-underline text-primary"
+      role="button"
+      >Giriş yapın</span
+    >
+  </div>
+</div>
