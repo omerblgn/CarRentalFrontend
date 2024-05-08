@@ -14,6 +14,9 @@ import { EditCarComponent } from './components/pages/cars-list/edit-car/edit-car
 import { AddColorComponent } from './components/pages/colors-list/add-color/add-color.component';
 import { ColorsListComponent } from './components/pages/colors-list/colors-list.component';
 import { EditColorComponent } from './components/pages/colors-list/edit-color/edit-color.component';
+import { AddRoleComponent } from './components/pages/roles-list/add-role/add-role.component';
+import { EditRoleComponent } from './components/pages/roles-list/edit-role/edit-role.component';
+import { RolesListComponent } from './components/pages/roles-list/roles-list.component';
 import { PaymentComponent } from './components/payment/payment.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -40,6 +43,9 @@ export const routes: Routes = [
       { path: 'cars', component: CarsListComponent },
       { path: 'cars/add', component: AddCarComponent },
       { path: 'cars/edit/:carId', component: EditCarComponent },
+      { path: 'claims', component: RolesListComponent },
+      { path: 'claims/add', component: AddRoleComponent },
+      { path: 'claims/edit/:claimId', component: EditRoleComponent },
     ],
   },
   { path: 'profile', component: ProfileComponent, canActivate: [loginGuard] },

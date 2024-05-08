@@ -1,0 +1,39 @@
+<div class="card">
+  <div class="card-header">
+    <h5 class="card-title m-0">Rol Düzenle</h5>
+  </div>
+  <div class="card-body">
+    <form
+      [formGroup]="editRoleForm"
+      (ngSubmit)="editRoleForm.valid && editRole()"
+    >
+      <div class="mb-3">
+        <label for="roleName" class="form-label">Rol adı</label>
+        <input
+          type="text"
+          class="form-control"
+          [ngClass]="{
+            'is-invalid':
+              editRoleForm.get('name')?.invalid &&
+              editRoleForm.get('name')?.touched
+          }"
+          id="roleName"
+          formControlName="name"
+          required
+        />
+        <div
+          *ngIf="
+            editRoleForm.get('name')?.invalid &&
+            editRoleForm.get('name')?.touched
+          "
+          class="invalid-feedback"
+        >
+          Rol adı boş bırakılamaz
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="editRoleForm.invalid">
+        Kaydet
+      </button>
+    </form>
+  </div>
+</div>
