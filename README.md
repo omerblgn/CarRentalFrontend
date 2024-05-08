@@ -1,7 +1,7 @@
-[![GitHub Repo stars](https://img.shields.io/github/stars/omerblgn/carrentalfrontend?style=for-the-badge&color=%23dfb317)](https://github.com/omerblgn/carrentalfrontend/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/omerblgn/carrentalfrontend?style=for-the-badge&color=%2397ca00)](https://github.com/omerblgn/carrentalfrontend/forks)
-[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/omerblgn/carrentalfrontend?style=for-the-badge&color=%23007ec6)](https://github.com/omerblgn/carrentalfrontend/issues)
-[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/omerblgn/carrentalfrontend?style=for-the-badge&color=%23fe7d37)](https://github.com/omerblgn/carrentalfrontend/pulls)
+[![GitHub Repo stars](https://img.shields.io/github/stars/omerblgn/CarRentalFrontend?style=for-the-badge&color=%23dfb317)](https://github.com/omerblgn/CarRentalFrontend/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/omerblgn/CarRentalFrontend?style=for-the-badge&color=%2397ca00)](https://github.com/omerblgn/CarRentalFrontend/forks)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/omerblgn/CarRentalFrontend?style=for-the-badge&color=%23007ec6)](https://github.com/omerblgn/CarRentalFrontend/issues)
+[![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/omerblgn/CarRentalFrontend?style=for-the-badge&color=%23fe7d37)](https://github.com/omerblgn/CarRentalFrontend/pulls)
 
 # CarRental
 
