@@ -8,14 +8,14 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Brand } from '../../../../models/brand';
-import { Car } from '../../../../models/car';
-import { CarImages } from '../../../../models/carImages';
-import { Color } from '../../../../models/color';
-import { BrandService } from '../../../../services/brand.service';
-import { CarImageService } from '../../../../services/car-image.service';
-import { CarService } from '../../../../services/car.service';
-import { ColorService } from '../../../../services/color.service';
+import { Brand } from '../../../../../models/brand';
+import { Car } from '../../../../../models/car';
+import { CarImage } from '../../../../../models/carImage';
+import { Color } from '../../../../../models/color';
+import { BrandService } from '../../../../../services/brand.service';
+import { CarImageService } from '../../../../../services/car-image.service';
+import { CarService } from '../../../../../services/car.service';
+import { ColorService } from '../../../../../services/color.service';
 
 @Component({
   selector: 'app-edit-car',
@@ -29,7 +29,7 @@ export class EditCarComponent implements OnInit {
   cars: Car;
   brands: Brand[] = [];
   colors: Color[] = [];
-  carImages: CarImages[] = [];
+  carImages: CarImage[] = [];
   selectedFiles: File[] = [];
   baseUrl = 'https://localhost:7284';
   maxImagesErrorMessage: string | null;
@@ -152,7 +152,7 @@ export class EditCarComponent implements OnInit {
     });
   }
 
-  deleteImage(carImage: CarImages) {
+  deleteImage(carImage: CarImage) {
     this.carImageService.deleteCarImages(carImage).subscribe((response) => {
       this.toastrService.success('Resim silindi');
       window.location.reload();

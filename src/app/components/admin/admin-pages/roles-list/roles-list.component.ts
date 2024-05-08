@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { OperationClaim } from '../../../models/operationClaim';
-import { OperationClaimService } from '../../../services/operation-claim.service';
+import { OperationClaim } from '../../../../models/operationClaim';
+import { OperationClaimService } from '../../../../services/operation-claim.service';
 
 @Component({
   selector: 'app-roles-list',

@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { ColorService } from '../../../../services/color.service';
+import { ColorService } from '../../../../../services/color.service';
 
 @Component({
   selector: 'app-add-color',

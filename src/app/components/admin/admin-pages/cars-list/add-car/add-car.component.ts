@@ -8,11 +8,11 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Brand } from '../../../../models/brand';
-import { Color } from '../../../../models/color';
-import { BrandService } from '../../../../services/brand.service';
-import { CarService } from '../../../../services/car.service';
-import { ColorService } from '../../../../services/color.service';
+import { Brand } from '../../../../../models/brand';
+import { Color } from '../../../../../models/color';
+import { BrandService } from '../../../../../services/brand.service';
+import { CarService } from '../../../../../services/car.service';
+import { ColorService } from '../../../../../services/color.service';
 
 @Component({
   selector: 'app-add-car',

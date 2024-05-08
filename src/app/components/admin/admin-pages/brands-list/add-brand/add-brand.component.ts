@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { BrandService } from '../../../../services/brand.service';
+import { BrandService } from '../../../../../services/brand.service';
 
 @Component({
   selector: 'app-add-brand',

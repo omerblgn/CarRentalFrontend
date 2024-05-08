@@ -8,8 +8,8 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { OperationClaim } from '../../../../models/operationClaim';
-import { OperationClaimService } from '../../../../services/operation-claim.service';
+import { OperationClaim } from '../../../../../models/operationClaim';
+import { OperationClaimService } from '../../../../../services/operation-claim.service';
 
 @Component({
   selector: 'app-edit-role',

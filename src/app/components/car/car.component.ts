@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CarDetail } from '../../models/carDetail';
-import { CarImages } from '../../models/carImages';
+import { CarImage } from '../../models/carImage';
 import { CarFilterPipe } from '../../pipes/car-filter.pipe';
 import { CarImageService } from '../../services/car-image.service';
 import { CarService } from '../../services/car.service';
@@ -26,7 +26,7 @@ import { ColorComponent } from '../filter/color/color.component';
 })
 export class CarComponent implements OnInit {
   carsDetail: CarDetail[] = [];
-  carImages: CarImages[] = [];
+  carImages: CarImage[] = [];
   thumbnailImage: string[] = [];
   dataLoaded = false;
   fakeArray = Array(6);

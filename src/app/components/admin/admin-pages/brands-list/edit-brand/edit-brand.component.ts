@@ -8,58 +8,58 @@ import {
 } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Color } from '../../../../models/color';
-import { ColorService } from '../../../../services/color.service';
+import { Brand } from '../../../../../models/brand';
+import { BrandService } from '../../../../../services/brand.service';
 
 @Component({
-  selector: 'app-edit-color',
+  selector: 'app-edit-brand',
   standalone: true,
   imports: [ReactiveFormsModule, CommonModule],
-  templateUrl: './edit-color.component.html',
-  styleUrl: './edit-color.component.css',
+  templateUrl: './edit-brand.component.html',
+  styleUrl: './edit-brand.component.css',
 })
-export class EditColorComponent implements OnInit {
-  editColorForm: FormGroup;
-  color: Color;
+export class EditBrandComponent implements OnInit {
+  editBrandForm: FormGroup;
+  brand: Brand;
 
   constructor(
     private formBuilder: FormBuilder,
-    private colorService: ColorService,
+    private brandService: BrandService,
     private toastrService: ToastrService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
-    this.createEditColorForm();
+    this.createEditBrandForm();
 
     this.route.params.subscribe((params) => {
-      if (params['colorId']) {
-        this.getColorById(params['colorId']);
+      if (params['brandId']) {
+        this.getBrandById(params['brandId']);
       }
     });
   }
 
-  createEditColorForm() {
-    this.editColorForm = this.formBuilder.group({
+  createEditBrandForm() {
+    this.editBrandForm = this.formBuilder.group({
       name: ['', Validators.required],
     });
   }
 
-  getColorById(colorId: number) {
-    this.colorService.getColorById(colorId).subscribe((response) => {
-      this.color = response.data;
-      this.editColorForm.get('name')?.setValue(this.color.name);
+  getBrandById(brandId: number) {
+    this.brandService.getBrandById(brandId).subscribe((response) => {
+      this.brand = response.data;
+      this.editBrandForm.get('name')?.setValue(this.brand.name);
     });
   }
 
-  editColor() {
-    let color = Object.assign({}, this.editColorForm.value);
-    color.id = this.color.id;
+  editBrand() {
+    let brand = Object.assign({}, this.editBrandForm.value);
+    brand.id = this.brand.id;
 
-    this.colorService.updateColor(color).subscribe(
+    this.brandService.updateBrand(brand).subscribe(
       (response) => {
-        this.toastrService.success('Renk güncellendi');
-        window.location.assign('/admin/colors');
+        this.toastrService.success('Marka güncellendi');
+        window.location.assign('/admin/brands');
       },
       (error) => {
         if (error.error.ValidationErrors.length > 0) {

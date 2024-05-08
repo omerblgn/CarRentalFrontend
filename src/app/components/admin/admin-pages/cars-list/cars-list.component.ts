@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { CarDetail } from '../../../models/carDetail';
-import { CarService } from '../../../services/car.service';
+import { CarDetail } from '../../../../models/carDetail';
+import { CarService } from '../../../../services/car.service';
 
 @Component({
   selector: 'app-cars-list',

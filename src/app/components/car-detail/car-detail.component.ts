@@ -4,7 +4,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule, ToastrService } from 'ngx-toastr';
 import { CarDetail } from '../../models/carDetail';
-import { CarImages } from '../../models/carImages';
+import { CarImage } from '../../models/carImage';
 import { Rental } from '../../models/rental';
 import { CarImageService } from '../../services/car-image.service';
 import { CarService } from '../../services/car.service';
@@ -22,7 +22,7 @@ import { DatepickerComponent } from '../datepicker/datepicker.component';
 })
 export class CarDetailComponent implements OnInit {
   carDetail: CarDetail;
-  carImages: CarImages[] = [];
+  carImages: CarImage[] = [];
   baseUrl = 'https://localhost:7284';
   dataLoaded = false;
   fromDate: Date;

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
-import { CarImages } from '../models/carImages';
+import { CarImage } from '../models/carImage';
 import { ListResponseModel } from '../models/listResponseModel';
 import { ResponseModel } from '../models/responseModel';
 
@@ -14,14 +14,14 @@ export class CarImageService {
 
   constructor(private httpClient: HttpClient) {}
 
-  getCarImagesByCarId(carId: number): Observable<ListResponseModel<CarImages>> {
+  getCarImagesByCarId(carId: number): Observable<ListResponseModel<CarImage>> {
     let newPath = `${this.apiUrl}/getcarimagesbycarid?id=${carId}`;
-    return this.httpClient.get<ListResponseModel<CarImages>>(newPath);
+    return this.httpClient.get<ListResponseModel<CarImage>>(newPath);
   }
 
-  getCarImages(): Observable<ListResponseModel<CarImages>> {
+  getCarImages(): Observable<ListResponseModel<CarImage>> {
     let newPath = `${this.apiUrl}/getall`;
-    return this.httpClient.get<ListResponseModel<CarImages>>(newPath);
+    return this.httpClient.get<ListResponseModel<CarImage>>(newPath);
   }
 
   addCarImages(formData: FormData): Observable<ResponseModel> {
@@ -29,7 +29,7 @@ export class CarImageService {
     return this.httpClient.post<ResponseModel>(newPath, formData);
   }
 
-  deleteCarImages(carImage: CarImages) {
+  deleteCarImages(carImage: CarImage) {
     let newPath = `${this.apiUrl}/delete`;
     return this.httpClient.delete<ResponseModel>(newPath, {
       body: {
