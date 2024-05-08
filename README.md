@@ -1,3 +1,8 @@
+![GitHub Repo stars](https://img.shields.io/github/stars/omerblgn/carrentalfrontend?style=for-the-badge&color=%23dfb317)
+![GitHub forks](https://img.shields.io/github/forks/omerblgn/carrentalfrontend?style=for-the-badge&color=%2397ca00)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues/omerblgn/carrentalfrontend?style=for-the-badge&color=%23007ec6)
+![GitHub Issues or Pull Requests](https://img.shields.io/github/issues-pr/omerblgn/carrentalfrontend?style=for-the-badge&color=%23fe7d37)
+
 # CarRental
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.2.
